@@ -1,0 +1,13 @@
+---
+# Wars to deploy. War file must be on files.
+wars:
+  - name: hello01
+    war: hello01.war
+  - name: hello02
+    war: hello02.war
+
+# Tomcat install path
+tomcat_deploy_tomcat_install: '/opt/tomcat'
+
+# Set to True to create nginx vhost proxy to war app. ( Requires squintans.nginx role )
+tomcat_nginx_vhost: True

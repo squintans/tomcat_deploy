@@ -1,0 +1,21 @@
+---
+# Deploy war
+- name: Deploy war
+  copy:
+    src: "{{ item.war }}"
+    dest: "{{ tomcat_deploy_tomcat_install }}/webapps"
+    owner: tomcat
+    group: tomcat
+  loop: "{{ wars }}"
+
+- debug:
+    msg: "{{ item.name }} - {{ item.war }}"
+  loop: "{{ wars }}"
+
+- name: Nginx War Template
+  template: 
+    src: nginx_war.conf.j2
+    dest: /etc/nginx/conf.d/tomcat_{{ item.name }}.conf
+  loop: "{{ wars }}"
+  when: tomcat_nginx_vhost
+  notify: h_restart-nginx
