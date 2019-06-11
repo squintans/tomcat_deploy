@@ -8,14 +8,26 @@
     group: tomcat
   loop: "{{ wars }}"
 
-- debug:
-    msg: "{{ item.name }} - {{ item.war }}"
-  loop: "{{ wars }}"
+# Nginx Conf
+- name: Nginx Conf
+  block:
+  - name: Nginx War Template
+    template: 
+      src: nginx_war.conf.j2
+      dest: /etc/nginx/conf.d/tomcat_{{ item.name }}.conf
+    loop: "{{ wars }}"
 
-- name: Nginx War Template
-  template: 
-    src: nginx_war.conf.j2
-    dest: /etc/nginx/conf.d/tomcat_{{ item.name }}.conf
-  loop: "{{ wars }}"
+  # Nginx service.
+  - name: Nginx service
+    service: 
+      name: nginx
+      state: restarted
+      enabled: yes
+  
+  # Nginx Verify is listening on port 80
+  - name: Nginx Verify port 80
+    wait_for:
+      port: 80
+      timeout: 2  
+
   when: tomcat_deploy_nginx_vhost
-  notify: h_restart-nginx
