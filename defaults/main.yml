@@ -10,4 +10,4 @@ wars:
 tomcat_deploy_tomcat_install: '/opt/tomcat'
 
 # Set to True to create nginx vhost proxy to war app. ( Requires squintans.nginx role )
-tomcat_nginx_vhost: True
+tomcat_deploy_nginx_vhost: True
