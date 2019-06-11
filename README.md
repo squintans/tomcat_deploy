@@ -9,6 +9,7 @@ Requirements
 This Ansible playbook is meant to be run on a FRESH never used server, virtual machine or container.
 
 Requires a tomcat installation ( Optional: squintans.tomcat9 role )
+
 Requires a nginx installation if vhost nginx is desirable ( Optional: squintans.nginx role )
 
 Role Variables
