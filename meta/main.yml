@@ -15,7 +15,8 @@ galaxy_info:
         - cosmic
         - bionic                  
   galaxy_tags:
-    - Tomcat
-    - Tomcat Deploy
-    - Nginx
-    - War
+    - tomcat
+    - tomcat 
+    - deploy
+    - nginx
+    - war
